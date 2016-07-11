@@ -4,3 +4,4 @@ wheel
 pytest
 tox
 flake8
+sphinx
