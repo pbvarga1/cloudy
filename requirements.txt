@@ -1,0 +1,6 @@
+-e . 
+
+wheel
+pytest
+tox
+flake8
