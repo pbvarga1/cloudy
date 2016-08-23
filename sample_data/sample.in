@@ -1,0 +1,26 @@
+save grid ".grd"
+c \\Create incident radiant field shape with ISM\\
+table ISM
+abundances ISM
+cosmic rays background
+c \\Constant Hydrogen Density\\
+hden 3.5
+c \\Vary Hydrogen Density\\
+c hden 1 vary
+c grid 3.5 4 .1
+c \\Constant Temperature\\
+c constant temperature 3.5
+c \\Vary Temperature\\
+constant temperature 3 vary
+grid 8000 100000 1000
+c \\Stop at zone 1 for speed\\
+stop zone 1
+c \\save Intensity\\
+c save linelist ".ints" "linelistHII.dat" absolute
+c \\Save emissivity - Cooling\\
+save lines emissivity ".ems"
+O  1     6300A
+N  2     6584A
+S  2     6720A
+H  1     6563A
+end of lines

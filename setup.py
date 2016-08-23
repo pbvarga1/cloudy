@@ -25,7 +25,7 @@ test_requirements = [
 setup(
     name='cloudy',
     version='0.1.0',
-    description="cloudy is the python equivalnlent of mer_stamps in idl",
+    description="cloudy parses cloudy output files to pandas Data Frames",
     long_description=readme + '\n\n' + history,
     author="Perry Vargas",
     author_email='perrybvargas@gmail.com',
@@ -44,8 +44,7 @@ setup(
     zip_safe=False,
     keywords='cloudy',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
-        'Intended Audience :: Developers',
+        'Intended Audience :: Cloudy Users',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
         "Programming Language :: Python :: 2",

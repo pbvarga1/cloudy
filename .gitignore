@@ -43,6 +43,4 @@ output/*/index.html
 docs/_build
 
 #Other
-tests/mission_data/
-stamps_venv_osx/
 .ipynb_checkpoints/
