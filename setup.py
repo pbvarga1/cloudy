@@ -11,8 +11,8 @@ except ImportError:
 with open('README.rst') as readme_file:
     readme = readme_file.read()
 
-with open('HISTORY.rst') as history_file:
-    history = history_file.read().replace('.. :changelog:', '')
+# with open('HISTORY.rst') as history_file:
+#     history = history_file.read().replace('.. :changelog:', '')
 
 requirements = [
     # TODO: put package requirements here
@@ -26,7 +26,7 @@ setup(
     name='cloudy',
     version='0.1.0',
     description="cloudy parses cloudy output files to pandas Data Frames",
-    long_description=readme + '\n\n' + history,
+    long_description=readme + '\n\n',
     author="Perry Vargas",
     author_email='perrybvargas@gmail.com',
     url='https://github.com/pbvarga1/cloudy',
@@ -44,7 +44,6 @@ setup(
     zip_safe=False,
     keywords='cloudy',
     classifiers=[
-        'Intended Audience :: Cloudy Users',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
         "Programming Language :: Python :: 2",
