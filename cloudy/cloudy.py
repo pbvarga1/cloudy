@@ -32,7 +32,6 @@ class Cloudy(object):
         self.grd = self._read_grd(grd)
         self.df = self._make_df(data)
         self.labels = sorted(list(self.df.columns[1:]))
-        self.dfs = self._make_dfs()
 
     def __repr__(self):
         return repr(self.labels)
@@ -58,36 +57,6 @@ class Cloudy(object):
         df = pd.read_table(
             data, sep='\t', header=None, skiprows=1, names=names, comment='#')
         return df
-
-    def _make_dfs(self):
-        """Make a list of DataFrames containing subcategories of the main df
-
-        The subcategories are based on the iterations in the cloudy. For
-        example, if cloudy iterated over 3 hdens first and then 100
-        temperatures, the list would contain 3 different DataFrames with 100
-        indices, one for each hden. However, if the temperatures was iterated
-        first and then hden, there would be 100 DataFrames with three indices.
-        So the order in which the user runs cloudy is important
-
-        TODO: Give ability to choose/change how dfs are sub-categorized"""
-        dfs = [self.df]  # Initiate dfs list
-        num_arrs = len(self.grd)  # Number of Arrays
-        # When there are more than 1 arrays, then there will be categories
-        if num_arrs > 1:
-            for n in range(num_arrs - 1):
-                groups = sorted(list(set(self.grd[n])))
-                dfs = [
-                    self._create_df_list(df, groups, self.grd[n]) for df in
-                    dfs]
-        return dfs
-
-    def _create_df_list(self, df, groups, grd):
-        """Create a subcategories of the the df"""
-        df_list = []
-        for group in groups:
-            # Index the df to contain only the specific group
-            df_list.append(df[grd == group])
-        return df_list
 
     def _get_header(self, filep):
         """Grab the column headers for the df"""
