@@ -6,7 +6,7 @@ class Cloudy(object):
     """
     Parses Cloudy output files into Pandas DataFrames for analysis.
 
-    There is one main DataFrame and a list of data frames (see _Attributes).
+    There is one main DataFrame and a list of data frames (see Attributes).
     The reasoning for the list is to make it easier to graph and analyze.
 
     Parameters
@@ -15,6 +15,9 @@ class Cloudy(object):
         Path to the .grd file from the Cloudy output.
     data : str
         Path to the output file with the data to be analyzed.
+    grd_labels : list[None]
+        Strings labeling the different variables iterated in cloudy. Defining
+        this parameter will attach the grd data to the data frame.
 
     Attributes
     ----------
@@ -22,16 +25,25 @@ class Cloudy(object):
         Array(s) of the data from the grd file.
     df : DataFrame
         DataFrame of the data file.
+    grd_labels : list[None]
+        Strings labeling the different variables iterated in cloudy. Defining
+        this parameter will attach the grd data to the data frame.
     labels : list
         The column headers of the data file. Makes easier access to df.
-    dfs : list
-        List of DataFrames that are subcategories of the main DataFrame.
     """
 
-    def __init__(self, grd, data):
+    def __init__(self, grd, data, grd_labels=None):
         self.grd = self._read_grd(grd)
         self.df = self._make_df(data)
-        self.labels = sorted(list(self.df.columns[1:]))
+        if grd_labels is not None:
+            if len(self.grd) != len(grd_labels):
+                print(
+                    "Number of labels must match number of cloudy variables")
+            else:
+                for variable, label in zip(self.grd, grd_labels):
+                    self.df[label] = variable
+        self.grd_labels = grd_labels
+        self.labels = sorted(list(self.df.columns[:]))
 
     def __repr__(self):
         return repr(self.labels)
