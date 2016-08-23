@@ -35,14 +35,12 @@ clean-test:
 	rm -fr htmlcov/
 
 lint:
-	flake8 pystamps tests
+	flake8 cloudy tests
 
 test:
-	get_mission_data
 	py.test tests/*.py --ignore=setup.py
 
 test-all:
-	get_mission_data
 	tox
 
 coverage:
@@ -52,20 +50,18 @@ coverage:
 	open htmlcov/index.html
 
 docs:
-	rm -f docs/pystamps.rst
+	rm -f docs/cloudy.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ pystamps
+	sphinx-apidoc -o docs/ cloudy
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	open docs/_build/html/index.html
 
 release: clean
 	python setup.py sdist upload
-	python setup.py bdist_wheel upload
 
 dist: clean
 	python setup.py sdist
-	python setup.py bdist_wheel
 	ls -l dist
 
 install: clean

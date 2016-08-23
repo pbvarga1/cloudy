@@ -5,12 +5,25 @@ cloudy
 Parses the output files of the spectral synthesis code Cloudy into Pandas
 DataFrames for analysis.
 
-NOTE: THIS HAS NOT BEEN TESTED. But this will be addressed soon.
+Example
++++++++
+
+Here is a quick example. See sample_data for an ipythpn notebook example::
+
+  >>> from cloudy import cloudy
+  >>> sample = cloudy.Cloudy(
+    'sample_data/sample.grd', 'sample_data/sample.ems')
+  >>> sample.labels
+  ['H  1  6563A',
+   'N  2  6584A',
+   'O  1  6300A',
+   'S  2  6720A',
+   'Temperature',
+   'depth']
+
 
 Todos
 -----
 
-* Write Tests
 * Write Docs
-* Create Example Ipyhton Notebook
-* Make available on pypi
+
